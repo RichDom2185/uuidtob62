@@ -8,11 +8,19 @@ The main purpose of this utility is to provide a more compact representation of 
 0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 ```
 
-Converting the UUID to base 62 results in a 22-character string, saving 39% space. In small, low-resolutions screens, this can make all the difference e.g. when trying to display a unique QR code.
+Base 62 was chosen to not have to worry about URL-safe characters, while still maintaining sufficient compatibility for most use-cases. Converting the UUID to base 62 results in a 22-character string, saving 39% space. In small, low-resolutions screens, this can make all the difference e.g. when trying to display a unique QR code.
+
+**Note:** If all you need is guaranteed uniqueness, you can just use the base-62 string as a primary key. However, if you are intending to parse the base-62 string back to hexadecimal format, ensure that it handles large values nicely, as the the parsed value of a UUID overflows a standard 32-bit integer.
 
 ## Usage
 
-- Read UUID from a file:
+- Output base-62 string to a file:
+
+  ```bash
+  $ uuidtob62 input_file.txt > output_file.txt
+  ```
+
+- Read (hexadecimal) UUID from a file:
 
   ```bash
   $ uuidtob62 <file_name>
@@ -24,7 +32,4 @@ Converting the UUID to base 62 results in a 22-character string, saving 39% spac
   $ echo '123e4567-e89b-12d3-a456-426614174000' | uuidtob62
   ```
 
-- Output to a file:
-  ```bash
-  $ uuidtob62 input_file.txt > output_file.txt
-  ```
+When both a string STDIN and an file name argument are specified, the latter takes precedence.
