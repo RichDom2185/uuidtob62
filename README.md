@@ -12,6 +12,12 @@ Base 62 was chosen to not have to worry about URL-safe characters, while still m
 
 **Note:** If all you need is guaranteed uniqueness, you can just use the base-62 string as a primary key. However, if you are intending to parse the base-62 string back to hexadecimal format, ensure that it handles large values nicely, as the the parsed value of a UUID overflows a standard 32-bit integer.
 
+## Building
+
+```bash
+$ go build
+```
+
 ## Usage
 
 - Output base-62 string to a file:
