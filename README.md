@@ -21,7 +21,7 @@ Converting the UUID to base 62 results in a 22-character string, saving 39% spac
 - Pass UUID string to standard input:
 
   ```bash
-  $ echo '123e4567-e89b-12d3-a456-426614174000' > uuidtob62
+  $ echo '123e4567-e89b-12d3-a456-426614174000' | uuidtob62
   ```
 
 - Output to a file:
