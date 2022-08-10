@@ -10,15 +10,6 @@ import (
 	termutil "github.com/andrew-d/go-termutil"
 )
 
-func parse(uuid string) {
-	b16, ok := new(big.Int).SetString(uuid, 16)
-	if !ok {
-		fmt.Println("Error parsing UUID: Invalid format")
-		return
-	}
-	fmt.Println(b16.Text(62))
-}
-
 func readFromFile() []byte {
 	data, err := os.ReadFile(os.Args[1])
 	if err != nil {
@@ -56,5 +47,10 @@ func main() {
 
 	original := strings.TrimSpace(string(data))
 	original = strings.ReplaceAll(original, "-", "")
-	parse(original)
+	b16, ok := new(big.Int).SetString(original, 16)
+	if !ok {
+		fmt.Println("Error parsing UUID: Invalid format")
+		return
+	}
+	fmt.Println(b16.Text(62))
 }
